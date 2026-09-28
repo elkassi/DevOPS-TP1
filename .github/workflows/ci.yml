@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+
+      - name: Check JavaScript syntax
+        run: node --check app.js
+
+      - name: Build Docker image
+        run: docker build -t daily-tasks:ci .
+
+      - name: Smoke test container
+        run: |
+          docker run --rm -d --name daily-tasks-ci -p 127.0.0.1:8080:80 daily-tasks:ci
+          trap 'docker stop daily-tasks-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/ | grep -q 'Daily Tasks'; then
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs daily-tasks-ci
+          exit 1
