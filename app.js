@@ -3,6 +3,8 @@ const form = document.querySelector("#task-form");
 const input = document.querySelector("#task-input");
 const list = document.querySelector("#task-list");
 const count = document.querySelector("#task-count");
+const progressCount = document.querySelector("#progress-count");
+const progressFill = document.querySelector("#progress-fill");
 const emptyState = document.querySelector("#empty-state");
 const clearButton = document.querySelector("#clear-completed");
 const filterButtons = document.querySelectorAll("[data-filter]");
@@ -32,6 +34,7 @@ function saveTasks() {
 function render() {
   const visible = tasks.filter(task => filter === "all" || (filter === "completed") === task.completed);
   const remaining = tasks.filter(task => !task.completed).length;
+  const completed = tasks.length - remaining;
   list.replaceChildren();
 
   for (const task of visible) {
@@ -68,6 +71,8 @@ function render() {
   }
 
   count.textContent = `${remaining} ${remaining === 1 ? "task" : "tasks"} left`;
+  progressCount.textContent = `${completed} of ${tasks.length} done`;
+  progressFill.style.width = `${tasks.length ? Math.round(completed / tasks.length * 100) : 0}%`;
   emptyState.hidden = visible.length > 0;
   emptyState.textContent = tasks.length === 0
     ? "No tasks yet. Add one above to get started."

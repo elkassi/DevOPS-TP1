@@ -13,8 +13,16 @@
       <span class="eyebrow">A LITTLE SPACE TO FOCUS</span>
       <h1>Daily Tasks<span>.</span></h1>
       <p>Keep the important things in one simple place.</p>
+      <div class="update-badge">NEW UPDATE · PROGRESS TRACKING</div>
     </header>
     <section class="panel" aria-label="Task list">
+      <div class="progress" aria-label="Task progress">
+        <div class="progress-heading">
+          <strong>Task progress</strong>
+          <span id="progress-count" aria-live="polite">0 of 0 done</span>
+        </div>
+        <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+      </div>
       <form id="task-form">
         <label class="sr-only" for="task-input">New task</label>
         <input id="task-input" name="task" type="text" maxlength="120" placeholder="What needs to get done?" autocomplete="off" required>

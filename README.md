@@ -12,3 +12,4 @@ Open `index.html` in a browser. No installation or server is required.
 - Mark tasks complete, delete them, and filter by All, Active, or Completed.
 - Clear completed tasks.
 - Keep tasks after refreshing the page.
+- See a live progress bar showing how many tasks are complete.

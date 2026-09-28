@@ -10,7 +10,13 @@ header { margin-bottom: 36px; }
 h1 { margin: 12px 0 8px; font-size: clamp(40px, 7vw, 64px); line-height: 1.05; letter-spacing: -.055em; }
 h1 span { color: #68a487; }
 header p { margin: 0; color: #737b75; }
+.update-badge { display: inline-block; margin-top: 18px; border-radius: 999px; padding: 8px 12px; background: #e0efe4; color: #276546; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
 .panel { overflow: hidden; border: 1px solid #e4e7df; border-radius: 18px; background: #fff; box-shadow: 0 20px 55px rgba(35, 48, 37, .06); }
+.progress { padding: 24px 24px 0; }
+.progress-heading { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 10px; font-size: 13px; }
+.progress-heading span { color: #6e7d70; }
+.progress-track { height: 9px; overflow: hidden; border-radius: 999px; background: #e9f0e9; }
+.progress-fill { width: 0; height: 100%; border-radius: inherit; background: #47a16d; transition: width .25s ease; }
 form { display: flex; gap: 12px; padding: 24px; border-bottom: 1px solid #edf0ea; }
 form input { flex: 1; min-width: 0; padding: 14px 16px; border: 1px solid #dfe5dc; border-radius: 9px; background: #fafbf8; }
 form input::placeholder { color: #9aa39b; }
@@ -38,6 +44,7 @@ footer button:hover { text-decoration: underline; }
 footer button:disabled { color: #b2bbb3; cursor: default; text-decoration: none; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 @media (max-width: 500px) {
+  .progress { padding: 18px 18px 0; }
   form { flex-direction: column; padding: 18px; }
   .add { min-height: 44px; }
   .toolbar { flex-wrap: wrap; padding: 12px 18px; }
